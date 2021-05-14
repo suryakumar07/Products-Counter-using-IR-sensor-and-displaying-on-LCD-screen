@@ -1,0 +1,34 @@
+#include<LiquidCrystal.h>
+LiquidCrystal lcd(13,12,8,7,4,2);
+int s;
+int product = 0;
+int total;
+int count = 0;
+
+void setup() {
+  lcd.begin(16,2);
+  pinMode(A0,INPUT);
+ }
+
+void loop() {
+s = digitalRead(A0);
+
+if(s == HIGH && product == 0){
+    product = 1;
+}
+if( s == LOW && product == 1){
+  count = 1;
+  total = total + count;
+  product = 0;
+}   
+
+
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("NO of Products : ");
+  lcd.setCursor(0,1);
+  lcd.print(total);
+  delay(1000);
+  }
+
+
